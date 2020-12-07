@@ -45,9 +45,9 @@ __运行代码__：Lab_new/train_val_scoreshog.m</br>
 
 3. 按行打乱步骤2所产生的训练集文件内容 score_train_1.txt；</br>
 __运行命令__: </br>
-'''
-shuf score_train_1.txt的路径 -o score_train_shuf.txt(打乱后的输出路径，具体名称可自行指定)
-'''
+```python
+shuf score_train_1.txt 的路径 -o score_train_shuf.txt (打乱后的输出路径，具体名称可自行指定)
+```
 
 >Little Tips:
 >+ 上面的运行命令是Linux命令，直接在shell黑框下运行即可。
