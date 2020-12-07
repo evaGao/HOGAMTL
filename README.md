@@ -84,16 +84,16 @@ __运行代码__：python/generation.py</br>
 >+ 经过测试，最终得到两个输出文件，一个是output.txt（内容为网络预测输出的图像块hog特征和图像块质量分数值），另一个是scores.txt（内容为图像块的真实hog特征和真实质量分数值）
 
 ### 图像质量预测评估
-1. 去除输出的hog结果，只保留预测分数</br>
+1. 去除输出的hog结果，只保留预测分数；</br>
 __运行代码__：python/daily.py(只保留score)</br>
 代码输入：上一步测试后输出的output.txt和scores.txt</br>
 输出结果：去除hog特征后的output.txt和scores.txt</br>
 
-2. 考虑到之前删去了NaN的图像块，导致预测图像块的总数和原图的图像块总数不一致，因此需要补齐预测分数文件和真实分数文件</br>
+2. 考虑到之前删去了NaN的图像块，导致预测图像块的总数和原图的图像块总数不一致，因此需要补齐预测分数文件和真实分数文件；</br>
 __运行代码__：python/daily.py(将NaN的图像块以'0'的形式补充到预测质量分数文件 output.txt 中和将NaN的图像块的真实质量分数补充到真实质量分数文件 scores.txt 中)</br>
 输出结果：补齐后的output.txt和scores.txt
 
-3、根据权重策略预测整幅图像的质量分数
+3、根据权重策略预测整幅图像的质量分数；</br>
 __运行代码__：MATLAB/VLSD_find_region.m</br>
 输出结果：将图像块分数乘以权重后的质量分数文件 output_weight.txt 和 真实质量分数文件 scores.txt
 
@@ -101,18 +101,18 @@ __运行代码__：MATLAB/VLSD_find_region.m</br>
 >+ 在运行这段代码时，需要有包含测试图像块名字+分数的文本文件，以及只有测试图像块名字的文本文件，因此需要另外运行一个小脚本（daily.py(去除每行的HOG内容)）
 
 ### 计算PLCC和SROCC值
-1. 将加权的图像块质量分数求和得到整幅图像预测质量分数
+1. 将加权的图像块质量分数求和得到整幅图像预测质量分数；</br>
 __运行代码__: Training_scripts/compute_LCC_SROCC.m</br>
 代码输入：output_weight.txt 和 scores.txt</br>
 输出结果：图像块加权求和后的整幅失真图像预测质量分数predict.txt和真实质量分数real.txt
 
-2. 就算PLCC和SROCC等指标
+2. 计算PLCC和SROCC等指标；</br>
 __运行代码__：simpal/verify_performance.m</br>
 代码输入：predict.txt 和 real.txt</br>
 输出结果：SROCC值、KROCC值、PLCC值和RMSE值
 
 ### 实验验证
-+ 绘制散点图
++ 绘制散点图；</br>
 __运行代码__：ACMM/assessment.m</br>
 代码输入：predict.txt 和 real.txt</br>
 输出结果：散点图结果
