@@ -70,8 +70,19 @@ __运行代码__：python/generation.py</br>
 >+ 运行代码是python格式
 >+ 制作lmdb的原因是caffe训练测试需要lmdb的数据格式，数据格式与所选取的深度学习框架有关。
 
-### 获取训练需要的数据格式
 ### 多任务网络模型训练
++ 网络架构文件：SIQAD/train8.protxt
++ 参数配置文件：SIQAD/solver_val8.protxt
++ 训练启动脚本：SIQAD/train1.sh
++ 测试启动脚本：SIQAD/test.sh
+
+>Little Tips:
+>+ 要知道如何跑起来，了解一下caffe运行流程，且各文件里的路径需根据自身情况进行修改
+>+ 在训练到测试切换时，记得更换网络架构文件中的输入数据路径，测试的batchsize=1
+>+ 以上的路径为SIQAD数据库的训练路径，SCID的文件名与其一致，具体内容位于SCID文件夹下
+>+ 可以调参，且可视化训练过程中loss值下降情况等，具体查看caffe使用规则
+>+ 经过测试，最终得到两个输出文件，一个是output.txt（内容为网络预测输出的图像块hog特征和图像块质量分数值），另一个是scores.txt（内容为图像块的真实hog特征和真实质量分数值）
+
 ### 图像质量预测评估
 ### 实验验证
 ## 参考
@@ -79,5 +90,3 @@ __运行代码__：python/generation.py</br>
 [1] Yang H, Fang Y, Lin W. Perceptual quality assessment of screen content images[J]. IEEE Transactions on Image Processing, 2015, 24 (11): 4408–4421.
 <div id="SCID"></div>
 [2] Wang S, Gu K, Zhang X, et al. Subjective and objective quality assessment of compressed screen content images[J]. IEEE Journal of Emerging and Selected Topics in Circuits and Systems, 2016, 6 (4): 532–543.
-
-
