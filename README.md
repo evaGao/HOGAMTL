@@ -18,7 +18,8 @@ SIQAD[<sup>1</sup>](#SIQAD) + SCID[<sup>2</sup>](#SCID)</br>
 ### 实验验证
 ## 参考
 <div id="SIQAD"></div>
-[1] Yang H, Fang Y, Lin W. Perceptual quality assessment of screen content images[J]. IEEE Transactions on Image Processing, 2015, 24 (11): 4408–4421.</br>
+[1] Yang H, Fang Y, Lin W. Perceptual quality assessment of screen content images[J]. IEEE Transactions on Image Processing, 2015, 24 (11): 4408–4421.
+</br>
 <div id="SCID"></div>
 [2] Wang S, Gu K, Zhang X, et al. Subjective and objective quality assessment of compressed screen content images[J]. IEEE Journal of Emerging and Selected Topics in Circuits and Systems, 2016, 6 (4): 532–543.
 
