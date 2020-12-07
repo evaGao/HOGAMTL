@@ -24,6 +24,7 @@ SIQAD[<sup>1</sup>](#SIQAD) + SCID[<sup>2</sup>](#SCID)</br>
 一、提取图像块的HOG特征并保存</br>
 
 1. 对图像进行分块，分为若干 32\*32\*3 的图像子块，并提取每个子块的HOG特征；</br>
+![HOG提取](https://github.com/evaGao/HOGAMTL/blob/main/image/hog.png)</br>
 __运行代码__：matlab/hog_rgb_3.m</br>
 代码输入：失真图像路径</br>
 输出结果：HOG元组
@@ -32,15 +33,15 @@ __运行代码__：matlab/hog_rgb_3.m</br>
 __运行代码__：matlab/write_in.m</br>
 代码输入：输出文件路径、HOG元组</br>
 输出结果：hog.txt（内容为多行数字，每行为图像块的36维HOG特征）</br>
-![HOG提取](https://github.com/evaGao/HOGAMTL/blob/main/image/hog.png)
 
 二、制作训练测试所需要的数据格式（lmdb数据，包含图像和对应的标签【质量分数标签和HOG标签】）</br>
 
 1. 对比度归一化图像并分块；</br>
+![归一化图像块](https://github.com/evaGao/HOGAMTL/blob/main/image/normalized.bmp)</br>
 __运行代码__：matlab/prepare_rgb_3.m</br>
 代码输入：失真图像路径</br>
 输出结果：归一化后的图像块</br>
-![归一化图像块](https://github.com/evaGao/HOGAMTL/blob/main/image/normalized.bmp)
+
 >Little Tips:
 >+ 这里的输出路径需要自己指定，具体位于代码第22行。默认保存在失真图像路径下，文件夹名称为 “rgb_3_test”，有需要自行修改即可。
 >+ 以上代码写的比较繁琐。先对图像进行了分块然后提取了每块的HOG特征，然后对比度归一化了整幅图像，又进行了分块，得到若干对比度归一化图像块。前后相当于重复分块了两次，比较耗时。或许可以精简一下，先整体对图像分块，然后直接基于各个图像块提取其HOG特征，并进行对比度归一化操作。这样前后只需进行一次分块操作即可。至于这样操作是否会影响最终结果，未知，可以尝试一下。
@@ -82,6 +83,8 @@ __运行代码__：python/generation.py</br>
 >+ 制作lmdb的原因是caffe训练测试需要lmdb的数据格式，数据格式与所选取的深度学习框架有关。
 
 ### 多任务网络模型训练
+![网络架构](https://github.com/evaGao/HOGAMTL/blob/main/image/architecture.png)</br>
+
 + 网络架构文件：SIQAD/train8.protxt
 + 参数配置文件：SIQAD/solver_val8.protxt
 + 训练启动脚本：SIQAD/train1.sh
@@ -124,10 +127,11 @@ __运行代码__：matlab/verify_performance.m</br>
 
 ### 实验验证
 + 绘制散点图；</br>
+![本文方法散点图](https://github.com/evaGao/HOGAMTL/blob/main/image/scatter.png)</br>
 __运行代码__：matlab/assessment.m</br>
 代码输入：predict.txt 和 real.txt</br>
 输出结果：散点图结果</br>
-![本文方法散点图](https://github.com/evaGao/HOGAMTL/blob/main/image/scatter.png)
+
 
 >Little Tips:
 >像其它合理性验证，泛化能力验证，单个失真类型验证等代码自行编写，非常容易。这里只提供散点图绘制代码。
