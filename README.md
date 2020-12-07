@@ -11,7 +11,7 @@ SIQAD[<sup>1</sup>](#SIQAD) + SCID[<sup>2</sup>](#SCID)</br>
 密码：v7bd
 ## 运行步骤
 ### 预处理数据
-#### 提取图像块的HOG特征并保存
+一、提取图像块的HOG特征并保存<\br>
 
 1. 对图像进行分块，分为32\*32\*3的图像子块，并提取每个子块的HOG特征</br>
 __运行代码__：Lab_new/hog_rgb_3.m</br>
@@ -23,11 +23,11 @@ __运行代码__：Lab_new/write_in.m</br>
 代码输入：输出文件路径、HOG元组</br>
 输出结果：hog.txt（内容为多行数字，每行为图像块的36维HOG特征）
 
-#### 制作训练所需要的数据格式（lmdb数据，包含图像和对应的标签【质量分数标签和HOG标签】）
+二、制作训练所需要的数据格式（lmdb数据，包含图像和对应的标签【质量分数标签和HOG标签】）<\br>
 
 1. 对比度归一化图像并分块</br>
-<abbr title="Hyper Text Markup Language">运行代码：</abbr> Lab_new/prepare_rgb_3.m</br>
-<font color=red>代码输入：</font>失真图像路径</br>
+__运行代码__：Lab_new/prepare_rgb_3.m</br>
+代码输入：失真图像路径</br>
 输出结果：归一化后的图像块
 
 >Little Tips:
