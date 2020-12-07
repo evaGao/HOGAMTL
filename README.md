@@ -125,7 +125,7 @@ __运行代码__: matlab/compute_LCC_SROCC.m</br>
 __运行代码__：matlab/verify_performance.m</br>
 代码输入：predict.txt 和 real.txt</br>
 输出结果：SROCC值、KROCC值、PLCC值和RMSE值</br>
-![指标结果](https://github.com/evaGao/HOGAMTL/blob/main/image/measure.png)</br>
+![两个数据库的指标结果](https://github.com/evaGao/HOGAMTL/blob/main/image/measure.png)</br>
 
 ### 实验验证
 + 绘制散点图；</br>
