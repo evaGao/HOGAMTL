@@ -1,14 +1,21 @@
 # HOGAMTL
 This is a HOG aided multi-task learning model for screen content image quality assessment, shorten as HOGAMTL.
+
 ## 环境配置
 UBUNTU16.04 + MATLAB2016 + caffe</br>
 </br>
 安装caffe可参考：[Ubuntu16.04 Caffe 安装步骤记录（超详尽）](https://blog.csdn.net/yhaolpz/article/details/71375762)
+
 ## 训练测试数据
 SIQAD[<sup>1</sup>](#SIQAD) + SCID[<sup>2</sup>](#SCID)</br>
 </br>
 百度云链接：https://pan.baidu.com/s/1Tg20HH9V_ddodn1g6_pGsQ
 密码：v7bd
+
+## 前期提示
++ 为了便于理解，可先读paper文件夹下的论文，有英文版和中文版（毕业设计中的基于多任务CNN的无参考屏幕内容图像质量评价一章）
++ 为了方便理解算法流程，下面在算法叙述方面会有部分输出结果的名称为临时拟编，注意不要与代码实际的输出结果名称搞混
+
 ## 运行步骤
 ### 处理数据
 一、提取图像块的HOG特征并保存</br>
@@ -116,10 +123,14 @@ __运行代码__：simpal/verify_performance.m</br>
 __运行代码__：ACMM/assessment.m</br>
 代码输入：predict.txt 和 real.txt</br>
 输出结果：散点图结果
-[![](file:///Users/gloria/Downloads/%E6%96%87%E6%A1%A3/%E6%AF%95%E4%B8%9A%E6%96%87%E6%A1%A3/tjuthesis/images/sec3/all.png)]
 
 >Little Tips:
 >像其它合理性验证，泛化能力验证，单个失真类型验证等代码自行编写，非常容易。这里只提供散点图绘制代码。
+
+## 注意事项
+关于算法使用HOG特征，目的是为了提取屏幕内容图像的梯度纹理特征。基于此，本算法还尝试了LBP特征和灰度共生矩阵特征，效果都不如HOG特征好。但这里还是把提取LBP特征和灰度共生矩阵GLCM特征代码提供一下吧，仅供参考
++ LBP特征提取：python/lbp.py
++ GLCM特征提取：python/glcm.py
 
 ## 参考
 <div id="SIQAD"></div>
