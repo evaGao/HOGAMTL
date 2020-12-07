@@ -26,49 +26,26 @@ end
 d2=sort_nat(nameCell);
 for g =  1: nImages
     imageName=d2{g};
-    image_before = imread(strcat(inputDir, imageName));
-  %  image = rgb2hsi(image);
-   % image=image(:,:,1);
-    image_be = double(image_before);    
+    image = imread(strcat(inputDir, imageName));
+    image = rgb2hsi(image);
+    image=image(:,:,3);
+    image = double(image);    
     % Divide the image into patchSize x patchSize size patches
-    imagePatches = getImagePatches_3(image_be, patchSize); 
-    [nRowPatches, nColPatches,dim] = size(imagePatches);
+    imagePatches = getImagePatches(image, patchSize); 
+    [nRowPatches, nColPatches] = size(imagePatches);
     for r = 1 : nRowPatches
         for c = 1 : nColPatches
-            levelx=[];
-            levely=[];
-            for i=1:dim
-                middle=imagePatches(:,:,i);
-                img(:,:,i)=middle{r,c};
-            end
-            [m,n,dim]=size(img);
+            Ix=[];
+            Iy=[];
+            img = imagePatches{r, c};
+            [m n]=size(img);
             %%%%%%%%%%%%%%%%%下面是求图像中各个像素值的梯度幅值和梯度方向%%%%%%%%%%%%%%%%%%%%%
             fy=[-1 0 1];        %定义竖直模板
             fx=fy';             %定义水平模板
-            levely=imfilter(img,fy,'replicate');    %竖直边缘
-            levelx=imfilter(img,fx,'replicate');    %水平边缘
-            amplitude=sqrt(levelx.^2+levely.^2);              %梯度幅值
-            direction=levely./levelx;              %梯度方向，有些为inf,-inf,nan，其中nan需要再处理一下
-            %%%%用于求解三通道中梯度幅值最大值以及对应的梯度方向%%%%%%
-            Ied=zeros(m,n);
-            Iphase=zeros(m,n);
-            Ix=zeros(m,n);
-            for i=1:m
-                for j=1:n
-                    a=[];
-                    for k=1:dim
-                        mid=amplitude(:,:,k);
-                        a=[a,mid(i,j)];
-                    end
-                    biggest=max(a);
-                    [x,y]=find(a==biggest);
-                    Ied(i,j)=biggest;
-                    direc=direction(:,:,y);
-                    Iphase(i,j)=direc(i,j);
-                    level=levelx(:,:,y);
-                    Ix(i,j)=level(i,j);
-                end
-            end   
+            Iy=imfilter(img,fy,'replicate');    %竖直边缘
+            Ix=imfilter(img,fx,'replicate');    %水平边缘
+            Ied=sqrt(Ix.^2+Iy.^2);              %梯度幅值
+            Iphase=Iy./Ix;              %梯度方向，有些为inf,-inf,nan，其中nan需要再处理一下
             %%%%%%利用循环遍历求解图像中各个8*8网格(non-overlap)的梯度直方图向量,为9维.并按其在图像中的位置以元组细胞的形式放入Cell元组变量中%%%%%%
             step=16;                %step*step个像素作为一个单元
             orient=9;               %方向直方图的方向个数

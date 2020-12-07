@@ -1,0 +1,26 @@
+% Author: Adnan Chaudhry
+% Date: September 27, 2016
+%% Create training and validation data files
+% Write image and score data to a file
+% scoresFile -- output file to which data would be written
+% imageName -- name of the image whose patches are formed
+% nPatches -- number of patches in the image
+% scoreValue -- score associated with the image
+function train_val_writeScoreData(scoresFile, imageName, nPatches, scoreValue,hog,row_deadline)
+[height,width]=size(hog);
+% for all patches
+for i = 1 : nPatches
+    % Form the image patch path string with name
+    imName = imageName(1 : end - 4); % strip extension
+    imPathWithName = strcat(imName, '/', imName, '_patch_', num2str(i), '.bmp');
+    % Write image path containing image name along with corresponding score
+    % value to the output file
+    fprintf(scoresFile, '%s %.4f ', imPathWithName, scoreValue);
+    for k=1:width-1
+        fprintf(scoresFile,'%f ',hog(row_deadline,k));
+    end
+    fprintf(scoresFile,'%f\n',hog(row_deadline,width));
+    row_deadline=row_deadline+1;
+end
+
+end

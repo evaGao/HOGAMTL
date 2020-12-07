@@ -1,6 +1,6 @@
 %流程：找到所有失真图像和所有参考图像-》通过dmos.mat获取所有失真图像的分数dmosArray，通过info_all.txt获取所有参考图像对应的失真图像
 %信息ref2DisMapping-》找到一幅参考图像，根据其名字在ref2DisMapping中定位并求出其位置列表distIdx-》根据distIdx,选取其中的一个值，
-%并重新定位到ref2DisMapping中，找到在该项列表值下所对应的某一幅失真图像的位置distImgIdx——》根据distImgIdx求出该位置suo对应的失真图像
+%并重新定位到ref2DisMapping中，找到在该项列表值下所对应的某一幅失真图像的位置distImgIdx——》根据distImgIdx求出该位置多对应的失真图像
 %名字distImgId和它的ID号，即distImgName[4:-4]-》根据此ID号在dmosArray中找到其对应的质量分数-》开始给该失真图像的块命名，并将上步
 %得到的分数都对应上即可
 %%
@@ -14,7 +14,7 @@ refDataDir = uigetdir('.', 'Select reference image data directory');
 refDataDir = strcat(refDataDir, '/');
 distDataDir = uigetdir('.', 'Select distortion image data directory');
 distDataDir = strcat(distDataDir, '/');
-outputDir = strcat('/home/xiaogao/Downloads/screen_content/SCIQAD/','mappings/');
+outputDir = strcat(distDataDir, 'mappings/');
 if(exist(outputDir, 'dir') == 0)
     mkdir(outputDir);
 end
@@ -36,7 +36,7 @@ nDistImages = length(ref2DistMapping{2});
 if(nDistImages ~= length(dmosArray))
     error('Mismatch in the number of images and the number of corresponding DMOS scores');
 end
-hog=load('/home/xiaogao/Downloads/screen_content/code/lbp.txt');%有特色的改动
+hog=load('/media/xiaogao/zz/gr/7-17/hog.txt');%有特色的改动
 row_deadline=1;%该变量表示在hog特征中已经截止到取第几块图像，即第几行
 for i = 1 : trainValIters
     scoresFileTrain = fopen(strcat(outputDir, 'scores_train_', num2str(i), '.txt'), 'wt');

@@ -5,13 +5,13 @@ addpath libsvm;
 k=1;
 p=1;
 %获得测试图像块的名字、分数列表
-[patch]=textread('/media/xiaogao/老毛桃U盘/gr/outputs/lbp/lbp_val_name_score.txt','%s%*[^\n]')
+[patch]=textread('/media/xiaogao/老毛桃U盘/gr/outputs/lbp/glcm_val_name_score.txt','%s%*[^\n]')
 %获得测试图像的名字列表
-[val]=textread('/media/xiaogao/老毛桃U盘/gr/outputs/lbp/lbp_val_name.txt','%s');
+[val]=textread('/media/xiaogao/老毛桃U盘/gr/outputs/glcm/glcm_val_name.txt','%s');
 %获得所有图像块的预测分数值
-output=textread('/media/xiaogao/老毛桃U盘/gr/outputs/lbp/output_nolbp_60000.txt','%s');
+output=textread('/media/xiaogao/老毛桃U盘/gr/outputs/glcm/output_noglcm_60000.txt','%s');
 %获得所有图像块的真实分数值
-score=textread('/media/xiaogao/老毛桃U盘/gr/outputs/lbp/scores_nolbp_60000.txt','%s');
+score=textread('/media/xiaogao/老毛桃U盘/gr/outputs/glcm/scores_noglcm_60000.txt','%s');
 len=length(output);
 outputs=[];
 scores=[];
@@ -118,8 +118,8 @@ end
 %a=cell2mat(outputs);
 %b=cell2mat(scores);
 [m,n]=size(outputs);
-fid1=fopen('/home/xiaogao/下载/NR-IQA-CNN-master1/outputs/outputs_lbp.txt','wt');
-fid2=fopen('/home/xiaogao/下载/NR-IQA-CNN-master1/outputs/scores_lbp.txt','wt');
+fid1=fopen('/home/xiaogao/下载/NR-IQA-CNN-master1/outputs/outputs_glcm.txt','wt');
+fid2=fopen('/home/xiaogao/下载/NR-IQA-CNN-master1/outputs/scores_glcm.txt','wt');
 for i=1:m
     fprintf(fid1,'%g',outputs(i,:));
     fprintf(fid1,'\n');

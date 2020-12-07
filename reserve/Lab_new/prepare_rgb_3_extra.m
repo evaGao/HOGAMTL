@@ -19,7 +19,7 @@ inputDir = strcat(inputDir, '/');
 % Get all image files in the directory
 imageFiles = dir(strcat(inputDir, '*.bmp'));
 % Output images' path
-outputDir = strcat(inputDir, 'rgb_3_test/');
+outputDir = strcat(inputDir, 'rgb_3/');
 % if output directory does not exist then create it
 if(exist(outputDir, 'dir') == 0)
     mkdir(outputDir);
@@ -34,32 +34,34 @@ nImages = length(imageFiles);
 for i =  1: nImages
     % Read image and convert to a grayscale and double matrix
     imageName = imageFiles(i).name;
-    image = imread(strcat(inputDir, imageName));
-    image = im2double(image);    
+    patchesOutputDir = strcat(outputDir,imageName(1 : end - 4), '/');
+    if(strcmpi(patchesOutputDir,strcat(outputDir, 'img672', '/')))
+       % mkdir(patchesOutputDir);
+        image = imread(strcat(inputDir, imageName));
+        image = im2double(image);    
     % Divide the image into patchSize x patchSize size patches
-    imagePatches = getImagePatches_3(image, patchSize); 
+        imagePatches = getImagePatches_3(image, patchSize); 
     % Apply local contrast normalization to image patches
-    normalizedPatches = normalizeLocalContrast_3(imagePatches,windowSize,patchSize);
+        normalizedPatches = normalizeLocalContrast_3(imagePatches,windowSize,patchSize);
     % Save normalized image patches to disk
-    [rowDim, colDim,dim] = size(normalizedPatches);
-    patchesOutputDir = strcat(outputDir, imageName(1 : end - 4), '/');
+        [rowDim, colDim,dim] = size(normalizedPatches);
+   % patchesOutputDir = strcat(outputDir, imageName(1 : end - 4), '/');
 % if the directory does not exist then create it
-    %if(strcmp(patchesOutputDir, '/home/xiaogao/Downloads/screen_content/SCID/distorted_after/rgb_3/img1647/'))
-    if(exist('patchesOutputDir', 'dir') == 0)
-        mkdir(patchesOutputDir);
-    end
+  %  if(exist(patchesOutputDir, 'dir') == 0)
+    %    mkdir(patchesOutputDir);
+    %end
     % Run through all patches 
         for r = 1 : rowDim
             for c = 1 : colDim
         % form name for the patch image
                 patchName = strcat(imageName(1 : end - 4), '_patch_', num2str(((r - 1) * colDim) + c));
                 outFile = strcat(patchesOutputDir, patchName, '.bmp');
-                %if ~exist(outFile,'file')
-                imwrite(normalizedPatches{r,c}, outFile);
-                %end
+                if ~exist(outFile,'file')
+                    imwrite(normalizedPatches{r,c}, outFile);
+                end
             end
         end
-    %end
+    end
     %saveImagePatches_3(normalizedPatches, outputDir, imageName);
 end
 

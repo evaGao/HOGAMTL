@@ -1,0 +1,10 @@
+clear all;
+clc;
+predict=fopen('/media/xiaogao/GLORIA/QL-IQA/output_vgg/output_livemd.txt');
+gtruth=fopen('/media/xiaogao/GLORIA/QL-IQA/output_vgg/scores_livemd.txt');
+dmosp=textscan(predict,'%f');
+dmos=textscan(gtruth,'%f');
+dmosp=cell2mat(dmosp);
+dmos=cell2mat(dmos);
+fclose(predict);
+fclose(gtruth);

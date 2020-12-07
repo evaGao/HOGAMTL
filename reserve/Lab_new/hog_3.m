@@ -26,12 +26,12 @@ end
 d2=sort_nat(nameCell);
 for g =  1: nImages
     imageName=d2{g};
-    image_before = imread(strcat(inputDir, imageName));
-  %  image = rgb2hsi(image);
+    image = imread(strcat(inputDir, imageName));
+    image = rgb2hsi(image);
    % image=image(:,:,1);
-    image_be = double(image_before);    
+    image = double(image);    
     % Divide the image into patchSize x patchSize size patches
-    imagePatches = getImagePatches_3(image_be, patchSize); 
+    imagePatches = getImagePatches_3(image, patchSize); 
     [nRowPatches, nColPatches,dim] = size(imagePatches);
     for r = 1 : nRowPatches
         for c = 1 : nColPatches
