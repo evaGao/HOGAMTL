@@ -22,7 +22,7 @@ __运行代码__：Lab_new/write_in.m</br>
 输出结果：hog.txt（内容为多行数字，每行为图像块的36维HOG特征）
 #### 制作训练所需要的数据格式（lmdb数据，包含图像和对应的标签【质量分数标签和HOG标签】）
 1. 对比度归一化图像并分块
-<font color=red>运行代码：</font> Lab_new/prepare_rgb_3.m</br>
+<font color=red>运行代码</font> Lab_new/prepare_rgb_3.m</br>
 代码输入：失真图像路径</br>
 输出结果：归一化后的图像块</br>
 >Little Tip:
