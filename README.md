@@ -116,6 +116,7 @@ __运行代码__：simpal/verify_performance.m</br>
 __运行代码__：ACMM/assessment.m</br>
 代码输入：predict.txt 和 real.txt</br>
 输出结果：散点图结果
+[![](file:///Users/gloria/Downloads/%E6%96%87%E6%A1%A3/%E6%AF%95%E4%B8%9A%E6%96%87%E6%A1%A3/tjuthesis/images/sec3/all.png)]
 
 >Little Tips:
 >像其它合理性验证，泛化能力验证，单个失真类型验证等代码自行编写，非常容易。这里只提供散点图绘制代码。
