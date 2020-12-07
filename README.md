@@ -4,7 +4,7 @@ This is a HOG aided multi-task learning model for screen content image quality a
 UBUNTU16.04 + MATLAB2016 + caffe
 注：安装caffe可参考:https://blog.csdn.net/yhaolpz/article/details/71375762
 ## 训练测试数据
-SIQAD SCID
+SIQAD SCID</br>
 百度云链接：https://pan.baidu.com/s/1Tg20HH9V_ddodn1g6_pGsQ
 密码：v7bd
 ## 运行步骤
