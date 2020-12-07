@@ -108,7 +108,9 @@ __运行代码__：python/daily.py(将NaN的图像块以'0'的形式补充到预
 
 3. 根据权重策略预测整幅图像的质量分数；</br>
 __运行代码__：matlab/VLSD_find_region.m</br>
-输出结果：将图像块分数乘以权重后的质量分数文件 output_weight.txt 和 真实质量分数文件 scores.txt
+输出结果：将图像块分数乘以权重后的质量分数文件 output_weight.txt 和 真实质量分数文件 scores.txt</br>
+![权重求解图](https://github.com/evaGao/HOGAMTL/blob/main/image/weight.png)</br>
+
 
 >Little Tips:
 >+ 在运行这段代码时，需要有包含测试图像块名字+分数的文本文件，以及只有测试图像块名字的文本文件，因此需要另外运行一个小脚本（daily.py(去除每行的HOG内容)）
@@ -122,7 +124,8 @@ __运行代码__: matlab/compute_LCC_SROCC.m</br>
 2. 计算PLCC和SROCC等指标；</br>
 __运行代码__：matlab/verify_performance.m</br>
 代码输入：predict.txt 和 real.txt</br>
-输出结果：SROCC值、KROCC值、PLCC值和RMSE值
+输出结果：SROCC值、KROCC值、PLCC值和RMSE值</br>
+![指标结果](https://github.com/evaGao/HOGAMTL/blob/main/image/measure.png)</br>
 
 ### 实验验证
 + 绘制散点图；</br>
