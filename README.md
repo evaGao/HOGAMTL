@@ -26,8 +26,8 @@ __运行代码__：Lab_new/write_in.m</br>
 #### 制作训练所需要的数据格式（lmdb数据，包含图像和对应的标签【质量分数标签和HOG标签】）
 
 1. 对比度归一化图像并分块</br>
-__运行代码__ Lab_new/prepare_rgb_3.m</br>
-代码输入：失真图像路径</br>
+The <abbr title="Hyper Text Markup Language">运行代码：</abbr>Lab_new/prepare_rgb_3.m</br>
+<font color=red>代码输入：</font>失真图像路径</br>
 输出结果：归一化后的图像块
 
 >Little Tips:
