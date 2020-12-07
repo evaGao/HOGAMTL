@@ -5,7 +5,7 @@ UBUNTU16.04 + MATLAB2016 + caffe</br>
 </br>
 安装caffe可参考：[Ubuntu16.04 Caffe 安装步骤记录（超详尽）](https://blog.csdn.net/yhaolpz/article/details/71375762)
 ## 训练测试数据
-SIQAD[<sup>1</sup>](#SIQAD) SCID[<sup>2</sup>](#SCID)</br>
+SIQAD[<sup>1</sup>](#SIQAD) + SCID[<sup>2</sup>](#SCID)</br>
 </br>
 百度云链接：https://pan.baidu.com/s/1Tg20HH9V_ddodn1g6_pGsQ
 密码：v7bd
@@ -18,7 +18,7 @@ SIQAD[<sup>1</sup>](#SIQAD) SCID[<sup>2</sup>](#SCID)</br>
 ### 实验验证
 ## 参考
 <div id="SIQAD"></div>
-[1] Yang H, Fang Y, Lin W. Perceptual quality assessment of screen content images[J]. IEEE Transactions on Image Processing, 2015, 24 (11): 4408–4421.
+[1] Yang H, Fang Y, Lin W. Perceptual quality assessment of screen content images[J]. IEEE Transactions on Image Processing, 2015, 24 (11): 4408–4421.</br>
 <div id="SCID"></div>
 [2] Wang S, Gu K, Zhang X, et al. Subjective and objective quality assessment of compressed screen content images[J]. IEEE Journal of Emerging and Selected Topics in Circuits and Systems, 2016, 6 (4): 532–543.
 
