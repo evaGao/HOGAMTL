@@ -15,26 +15,28 @@ SIQAD[<sup>1</sup>](#SIQAD) + SCID[<sup>2</sup>](#SCID)</br>
 ## 前期提示
 + 为了便于理解，可先读paper文件夹下的论文，有英文版和中文版（毕业设计中的基于多任务CNN的无参考屏幕内容图像质量评价一章）
 + 为了方便理解算法流程，下面在算法叙述方面会有部分输出结果的名称为临时拟编，注意不要与代码实际的输出结果名称搞混
-+ 实际运行matlab代码时，注意其调用函数文件的齐全，且路径可寻，否则会报错
++ 实际运行matlab代码时
+  * 注意其调用函数文件的齐全，且路径可寻，否则会报错
+  * 若当前路径下缺失要调用的函数文件，则在 reserve 文件夹下搜索该函数文件
 
 ## 运行步骤
 ### 处理数据
 一、提取图像块的HOG特征并保存</br>
 
 1. 对图像进行分块，分为若干 32\*32\*3 的图像子块，并提取每个子块的HOG特征；</br>
-__运行代码__：Lab_new/hog_rgb_3.m</br>
+__运行代码__：matlab/hog_rgb_3.m</br>
 代码输入：失真图像路径</br>
 输出结果：HOG元组
 
 2. 将HOG元组写入文本文件hog.txt中；</br>
-__运行代码__：Lab_new/write_in.m</br>
+__运行代码__：matlab/write_in.m</br>
 代码输入：输出文件路径、HOG元组</br>
 输出结果：hog.txt（内容为多行数字，每行为图像块的36维HOG特征）
 
 二、制作训练测试所需要的数据格式（lmdb数据，包含图像和对应的标签【质量分数标签和HOG标签】）</br>
 
 1. 对比度归一化图像并分块；</br>
-__运行代码__：Lab_new/prepare_rgb_3.m</br>
+__运行代码__：matlab/prepare_rgb_3.m</br>
 代码输入：失真图像路径</br>
 输出结果：归一化后的图像块
 
@@ -43,7 +45,7 @@ __运行代码__：Lab_new/prepare_rgb_3.m</br>
 >+ 以上代码写的比较繁琐。先对图像进行了分块然后提取了每块的HOG特征，然后对比度归一化了整幅图像，又进行了分块，得到若干对比度归一化图像块。前后相当于重复分块了两次，比较耗时。或许可以精简一下，先整体对图像分块，然后直接基于各个图像块提取其HOG特征，并进行对比度归一化操作。这样前后只需进行一次分块操作即可。至于这样操作是否会影响最终结果，未知，可以尝试一下。
 
 2. 根据前面某步所得到的hog.txt文件来制作 "img_patch_path label" 的训练集和测试集文件；</br>
-__运行代码__：Lab_new/train_val_scoreshog.m</br>
+__运行代码__：matlab/train_val_scoreshog.m</br>
 代码输入：参考图像路径、失真图像路径</br>
 输出结果：训练和测试集的txt文件 - score_train_1.txt 和 score_val_1.txt（文件每一行内容：训练/测试图像块路径 图像块质量分数 图像块HOG特征）
 
@@ -102,7 +104,7 @@ __运行代码__：python/daily.py(将NaN的图像块以'0'的形式补充到预
 输出结果：补齐后的output.txt和scores.txt
 
 3. 根据权重策略预测整幅图像的质量分数；</br>
-__运行代码__：MATLAB/VLSD_find_region.m</br>
+__运行代码__：matlab/VLSD_find_region.m</br>
 输出结果：将图像块分数乘以权重后的质量分数文件 output_weight.txt 和 真实质量分数文件 scores.txt
 
 >Little Tips:
@@ -110,18 +112,18 @@ __运行代码__：MATLAB/VLSD_find_region.m</br>
 
 ### 计算PLCC和SROCC值
 1. 将加权的图像块质量分数求和得到整幅图像预测质量分数；</br>
-__运行代码__: Training_scripts/compute_LCC_SROCC.m</br>
+__运行代码__: matlab/compute_LCC_SROCC.m</br>
 代码输入：output_weight.txt 和 scores.txt</br>
 输出结果：图像块加权求和后的整幅失真图像预测质量分数 predict.txt 和真实质量分数 real.txt
 
 2. 计算PLCC和SROCC等指标；</br>
-__运行代码__：simpal/verify_performance.m</br>
+__运行代码__：matlab/verify_performance.m</br>
 代码输入：predict.txt 和 real.txt</br>
 输出结果：SROCC值、KROCC值、PLCC值和RMSE值
 
 ### 实验验证
 + 绘制散点图；</br>
-__运行代码__：ACMM/assessment.m</br>
+__运行代码__：matlab/assessment.m</br>
 代码输入：predict.txt 和 real.txt</br>
 输出结果：散点图结果
 
