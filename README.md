@@ -86,14 +86,14 @@ __运行代码__：python/generation.py</br>
 ### 图像质量预测评估
 1. 去除输出的hog结果，只保留预测分数；</br>
 __运行代码__：python/daily.py(只保留score)</br>
-代码输入：上一步测试后输出的output.txt和scores.txt</br>
-输出结果：去除hog特征后的output.txt和scores.txt</br>
+代码输入：上一步测试后输出的output.txt 和 scores.txt</br>
+输出结果：去除hog特征后的output.txt 和 scores.txt</br>
 
 2. 考虑到之前删去了NaN的图像块，导致预测图像块的总数和原图的图像块总数不一致，因此需要补齐预测分数文件和真实分数文件；</br>
 __运行代码__：python/daily.py(将NaN的图像块以'0'的形式补充到预测质量分数文件 output.txt 中和将NaN的图像块的真实质量分数补充到真实质量分数文件 scores.txt 中)</br>
 输出结果：补齐后的output.txt和scores.txt
 
-3、根据权重策略预测整幅图像的质量分数；</br>
+3. 根据权重策略预测整幅图像的质量分数；</br>
 __运行代码__：MATLAB/VLSD_find_region.m</br>
 输出结果：将图像块分数乘以权重后的质量分数文件 output_weight.txt 和 真实质量分数文件 scores.txt
 
@@ -104,7 +104,7 @@ __运行代码__：MATLAB/VLSD_find_region.m</br>
 1. 将加权的图像块质量分数求和得到整幅图像预测质量分数；</br>
 __运行代码__: Training_scripts/compute_LCC_SROCC.m</br>
 代码输入：output_weight.txt 和 scores.txt</br>
-输出结果：图像块加权求和后的整幅失真图像预测质量分数predict.txt和真实质量分数real.txt
+输出结果：图像块加权求和后的整幅失真图像预测质量分数 predict.txt 和真实质量分数 real.txt
 
 2. 计算PLCC和SROCC等指标；</br>
 __运行代码__：simpal/verify_performance.m</br>
